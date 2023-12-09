@@ -1,5 +1,20 @@
-<div>
+<div class="search"
+     [class.expanded]="shouldExpand">
   <input type="text"
+         [placeholder]="'Search...'"
          (input)="onSearch($event)"
-  />
+         (click)="onSearchClick()"/>
+  <div class="search-results">
+    <ng-container *ngIf="shouldExpand">
+      <app-search-result *ngFor="let location of locations"
+                         [location]="location"
+                         (click)="onClick(location)">
+      </app-search-result>
+    </ng-container>
+  </div>
+</div>
+
+<div *ngIf="shouldExpand"
+     class="mask"
+     (click)="onMaskClick()">
 </div>

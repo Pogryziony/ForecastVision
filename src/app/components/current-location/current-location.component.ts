@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SearchResponse} from "../../models/search-response.interface";
 import {OpenWeatherService} from "../../services/open-weather.service";
-import {IpInfoService} from "../../services/ip-info.service";
+import {LocationData} from "../../models/location-data.interface";
 
 @Component({
   selector: 'app-current-location',
@@ -10,18 +9,17 @@ import {IpInfoService} from "../../services/ip-info.service";
 })
 export class CurrentLocationComponent implements OnInit {
 
-  searchResponse: SearchResponse;
+  currentLocation: LocationData;
 
-  constructor(
-    private _openWeatherService: OpenWeatherService,
-    private _ipInfoService: IpInfoService
-  ) {
+  constructor(private _openWeatherService: OpenWeatherService) {
   }
 
   ngOnInit(): void {
-    this._openWeatherService.getLocations()
-      .subscribe((response: SearchResponse) => this.searchResponse = response)
-    this._ipInfoService.getCurrentLocationWeather();
+    this._openWeatherService.getCurrentLocation().subscribe(
+      (currentLocation: LocationData) => {
+        this.currentLocation = currentLocation
+      }
+    )
   }
 
 }

@@ -17,6 +17,6 @@ export class IpInfoService {
 
   getCurrentLocationWeather(): void {
     firstValueFrom(this._http.get<IpInfoResponse>(`${IpInfoService.IP_INFO_URL}/json?token=${IpInfoService.TOKEN}`))
-      .then((response: IpInfoResponse) => this._openWeatherService.requestLocations(response.city));
+      .then((response: IpInfoResponse) => this._openWeatherService.requestLocations(response.city, 1));
   }
 }

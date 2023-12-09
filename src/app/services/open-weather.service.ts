@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {debounceTime, map, Observable, Subject, switchMap} from "rxjs";
+import {BehaviorSubject, debounceTime, Observable, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {SearchResponse} from "../models/search-response.interface";
+import {LocationData} from "../models/location-data.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class OpenWeatherService {
 
   private _searchSubject = new Subject<string>();
   private _locations = new Subject<SearchResponse>();
+  private _currentLocation = new BehaviorSubject<LocationData>(null);
 
   constructor(private _http: HttpClient) {
     this._searchSubject
@@ -22,18 +24,30 @@ export class OpenWeatherService {
   }
 
   search(query: string): void {
-    this._searchSubject.next(query);
+    if (query.length > 0) {
+      this._searchSubject.next(query);
+    }
+  }
+
+  updateCurrentLocation(location: LocationData): void {
+    this._currentLocation.next(location);
+  }
+
+  getCurrentLocation(): Observable<LocationData> {
+    return this._currentLocation.asObservable();
   }
 
   getLocations(): Observable<SearchResponse> {
     return this._locations.asObservable();
   }
 
-  requestLocations(query: string): void {
-    const endpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=10&lang=pl&appid=${OpenWeatherService.API_KEY}`;
-    this._http.get<SearchResponse>(endpoint).pipe(
-      map((data: any) => data[0])
-    ).subscribe((response: SearchResponse) => this._locations.next(response));
+  requestLocations(query: string, limit: number = 10): void {
+    const endpoint = `http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=${limit}&lang=pl&appid=${OpenWeatherService.API_KEY}`;
+    this._http.get<any>(endpoint).subscribe((response: any) => {
+      this._locations.next({
+        locations: response
+      })
+    });
   }
 
 }

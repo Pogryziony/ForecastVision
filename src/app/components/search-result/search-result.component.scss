@@ -1,0 +1,52 @@
+:host {
+  background-color: transparent;
+  transition: background-color .1s;
+
+  &:hover {
+    background-color: rgba(22, 22, 22, 0.25);
+
+    .container {
+      .left-side {
+        .name {
+          color: orange;
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+
+  .left-side {
+    .name{
+      transition: color .1s;
+    }
+
+    .state {
+      font-size: .7rem;
+      color: #b5b5b5;
+    }
+
+  }
+
+  .right-side {
+    color: #b5b5b5;
+
+    .country,
+    .lat,
+    .lon {
+      text-align: right;
+      font-size: .7rem;
+    }
+
+  }
+
+}
