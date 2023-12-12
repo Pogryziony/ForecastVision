@@ -1,0 +1,19 @@
+<div class="weather">
+  <div class="time-unit">
+    <mat-form-field>
+      <mat-select placeholder="Time unit"
+                  [(value)]="timeUnit"
+                  (selectionChange)="onSelectionChange()">
+        <mat-option *ngFor="let option of options"
+                    [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="weather-container">
+    <app-weather-tile *ngFor="let data of weatherDataToDisplay"
+                      [data]="data">
+    </app-weather-tile>
+  </div>
+</div>
