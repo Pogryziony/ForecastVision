@@ -1,0 +1,14 @@
+<div *ngIf="initialized; else loading"
+     class="main-container">
+  <div class="content">
+    <div class="search">
+      <app-search></app-search>
+    </div>
+    <app-current-location></app-current-location>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-template>
