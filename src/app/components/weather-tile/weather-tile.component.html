@@ -1,0 +1,37 @@
+<div class="content"
+     [class.is-current]="isCurrent">
+  <div class="top">
+    <div class="date">
+      {{data.dt | timestampToDate: timeUnit}}
+    </div>
+    <img class="icon"
+         [src]="iconSrc"/>
+  </div>
+  <div class="parameters">
+    <div class="info">
+      <span>
+        <mat-icon>device_thermostat</mat-icon>
+        {{data.temp | temperatureValueExtractor}} ℃
+      </span>
+      <span>{{weather.main}}</span>
+    </div>
+    <div class="parameter">
+      <span>
+        <mat-icon>air</mat-icon>
+        {{data.wind_speed}} m/s
+      </span>
+    </div>
+    <div class="parameter">
+      <span>
+        <mat-icon>water_drop</mat-icon>
+        {{data.humidity}}%
+      </span>
+    </div>
+    <div class="parameter">
+      <span>
+        <mat-icon>cloud</mat-icon>
+        {{data.clouds}}%
+      </span>
+    </div>
+  </div>
+</div>

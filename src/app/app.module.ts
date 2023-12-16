@@ -6,22 +6,42 @@ import {BrowserModule} from "@angular/platform-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {CurrentLocationComponent} from "./components/current-location/current-location.component";
 import {SearchResultComponent} from "./components/search-result/search-result.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {LocationDailyWeatherComponent} from "./components/location-daily-weather/location-daily-weather.component";
+import {TimestampToDatePipe} from "./pipes/timestamp-to-date.pipe";
+import {WeatherTileComponent} from "./components/weather-tile/weather-tile.component";
+import {TemperatureValueExtractorPipe} from "./pipes/temperature-value-extractor.pipe";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
+import {MatOptionModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     CurrentLocationComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    LocationDailyWeatherComponent,
+    WeatherTileComponent,
+    TimestampToDatePipe,
+    TemperatureValueExtractorPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    MatOptionModule,
+    FormsModule
   ],
   bootstrap: [
     AppComponent

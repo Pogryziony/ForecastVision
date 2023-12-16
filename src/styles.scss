@@ -16,6 +16,60 @@ body {
 }
 
 html, body {
+  overflow: hidden;
   height: 100%;
+
+
+  ::-webkit-scrollbar {
+    width: .5em;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #323232;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: orange;
+    }
+
+  }
+
 }
 
+.mat-mdc-select-panel,
+.mdc-list-item__primary-text,
+.mat-select-panel,
+.mat-mdc-text-field-wrapper,
+mat-pseudo-checkbox,
+mat-option {
+  text-transform: capitalize !important;
+  background-color: #2b2b2b !important;
+  color: white !important;
+  user-select: none;
+
+  &::after {
+    color: orange !important;
+  }
+
+  path{
+    fill: orange;
+  }
+
+}
+
+mat-select {
+  color: white !important;
+}
+
+.mdc-line-ripple {
+  &::after {
+    border-bottom-color: orange !important;
+  }
+
+}
