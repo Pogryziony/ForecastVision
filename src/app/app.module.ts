@@ -18,6 +18,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatOptionModule} from "@angular/material/core";
+import {MapComponent} from "./components/map/map.component";
+import {MapLayerSelectorComponent} from "./components/map-layer-selector/map-layer-selector.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import {MatOptionModule} from "@angular/material/core";
     LocationDailyWeatherComponent,
     WeatherTileComponent,
     TimestampToDatePipe,
-    TemperatureValueExtractorPipe
+    TemperatureValueExtractorPipe,
+    MapComponent,
+    MapLayerSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import {MatOptionModule} from "@angular/material/core";
     MatSelectModule,
     MatInputModule,
     MatOptionModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule
   ],
   bootstrap: [
     AppComponent

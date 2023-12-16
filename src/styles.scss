@@ -42,6 +42,10 @@ html, body {
 
 }
 
+.mdc-label {
+  color: white;
+}
+
 .mat-mdc-select-panel,
 .mdc-list-item__primary-text,
 .mat-select-panel,
@@ -57,7 +61,7 @@ mat-option {
     color: orange !important;
   }
 
-  path{
+  path {
     fill: orange;
   }
 
