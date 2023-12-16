@@ -109,44 +109,4 @@ export class OpenWeatherService {
     return firstValueFrom(this._http.get<any>(endpoint));
   }
 
-  async requestDailyWeather(location: LocationData): Promise<void> {
-    const [
-      fiveDaysAgo,
-      fourDaysAgo,
-      threeDaysAgo,
-      twoDaysAgo,
-      yesterday,
-      now
-    ] = await Promise.all([
-      this.requestHistoricalWeatherData(location, 5),
-      this.requestHistoricalWeatherData(location, 4),
-      this.requestHistoricalWeatherData(location, 3),
-      this.requestHistoricalWeatherData(location, 2),
-      this.requestHistoricalWeatherData(location, 1),
-      this.requestWeatherData(location)
-    ]);
-    now.daily.unshift(...[
-      fiveDaysAgo.current,
-      fourDaysAgo.current,
-      threeDaysAgo.current,
-      twoDaysAgo.current,
-      yesterday.current,
-    ])
-    this._locationWeatherData.next(now);
-  }
-
-  private requestWeatherData(location: LocationData): Promise<any> {
-    const endpoint = `http://api.openweathermap.org/data/2.5/onecall?lat=${location.lat}&lon=${location.lon}&units=metric&appid=${OpenWeatherService.API_KEY}`;
-    return firstValueFrom(this._http.get<any>(endpoint));
-  }
-
-  private requestHistoricalWeatherData(location: LocationData, numberOfDays: number): Promise<any> {
-    const now = moment();
-    const pastDate = now.subtract(numberOfDays, 'days');
-    const dt = Math.floor(pastDate.valueOf() / 1000);
-    const endpoint = `http://api.openweathermap.org/data/2.5/onecall/timemachine?dt=${dt}&lat=${location.lat}&lon=${location.lon}&units=metric&appid=${OpenWeatherService.API_KEY}`;
-
-    return firstValueFrom(this._http.get<any>(endpoint));
-  }
-
 }

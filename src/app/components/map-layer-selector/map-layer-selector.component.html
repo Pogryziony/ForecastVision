@@ -1,0 +1,9 @@
+<div class="layer-selector">
+  <section class="section">
+    <div *ngFor="let layer of layers">
+      <mat-checkbox (change)="onChange($event, layer)">
+        {{ layerCaptions[mapLayerType[layer]] }}
+      </mat-checkbox>
+    </div>
+  </section>
+</div>
