@@ -39,7 +39,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearchClick(): void {
-    if (this.locations.length > 1) {
+    if (this.locations?.length > 1) {
       this.shouldExpand = true;
     }
   }

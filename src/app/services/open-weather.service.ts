@@ -5,6 +5,8 @@ import {SearchResponse} from "../models/search-response.interface";
 import {LocationData} from "../models/location-data.interface";
 import {LocationWeatherResponse} from "../models/location-weather-response.interface";
 import moment from "moment";
+import TileLayer from "ol/layer/Tile";
+import {XYZ} from "ol/source";
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +58,15 @@ export class OpenWeatherService {
         locations: response
       })
     });
+  }
+
+  getMapLayer(layer: string): TileLayer<any> {
+    const mapUrl = `https://tile.openweathermap.org/map/${layer}/{z}/{x}/{y}.png?appid=${OpenWeatherService.API_KEY}`
+    return new TileLayer({
+      source: new XYZ({
+        url: mapUrl
+      }),
+    })
   }
 
   async requestDailyWeather(location: LocationData): Promise<void> {
