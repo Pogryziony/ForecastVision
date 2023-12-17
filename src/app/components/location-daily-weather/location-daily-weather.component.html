@@ -13,7 +13,8 @@
   </div>
   <div class="weather-container">
     <app-weather-tile *ngFor="let data of weatherDataToDisplay"
-                      [data]="data">
+                      [data]="data"
+                      [timeUnit]="timeUnit">
     </app-weather-tile>
   </div>
 </div>

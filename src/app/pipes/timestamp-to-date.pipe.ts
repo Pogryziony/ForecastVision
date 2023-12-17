@@ -10,7 +10,7 @@ export class TimestampToDatePipe implements PipeTransform {
   transform(value: number, timeUnit: WeatherTimeUnit): unknown {
     switch (timeUnit) {
       case WeatherTimeUnit.Daily:
-        return moment.unix(value).format("DD");
+        return moment.unix(value).format("MM.DD");
       case WeatherTimeUnit.Hourly:
         return moment.unix(value).format("HH:mm");
     }
